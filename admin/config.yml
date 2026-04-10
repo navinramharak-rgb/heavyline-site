@@ -11,48 +11,39 @@ collections:
     folder: "listings"
     create: true
     slug: "{{slug}}"
+    format: "json"
+    extension: "json"
     fields:
       - { label: "Title", name: "title", widget: "string", hint: "e.g. CAT 336 Hydraulic Excavator" }
-      - { label: "Status", name: "status", widget: "select", options: ["Available", "Pending", "Sold"], default: "Available" }
-      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Toggle ON to show this listing in the homepage preview (max 3)" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Available", "Pending", "Sold"]
+        default: "Available"
+      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Toggle ON to show on homepage (max 3)" }
       - label: "Category"
         name: "category"
         widget: "select"
-        options:
-          - "Excavators"
-          - "Cranes"
-          - "Dozers"
-          - "Loaders"
-          - "Aerial Equipment"
-          - "Dump Trucks"
-          - "Scrapers"
-          - "Graders"
-          - "Forklifts"
-          - "Compactors"
-          - "Other"
+        options: ["Excavators","Cranes","Dozers","Loaders","Aerial Equipment","Dump Trucks","Scrapers","Graders","Forklifts","Compactors","Other"]
       - { label: "Make", name: "make", widget: "string", hint: "e.g. CAT, Komatsu, Liebherr" }
       - { label: "Model", name: "model", widget: "string", hint: "e.g. 336, D65PX-18" }
-      - { label: "Year", name: "year", widget: "number", hint: "4-digit year" }
+      - { label: "Year", name: "year", widget: "number" }
       - { label: "Hours / Mileage", name: "hours", widget: "string", required: false, hint: "e.g. 4,200 hrs" }
       - { label: "Serial Number", name: "serial", widget: "string", required: false }
       - label: "Condition"
         name: "condition"
         widget: "select"
-        options:
-          - "Excellent — Like New"
-          - "Good — Well Maintained"
-          - "Fair — Minor Repairs Needed"
-          - "Poor — Requires Significant Work"
+        options: ["Excellent — Like New","Good — Well Maintained","Fair — Minor Repairs Needed","Poor — Requires Significant Work"]
       - { label: "Location", name: "location", widget: "string", hint: "e.g. Edmonton, Alberta" }
-      - { label: "Description", name: "description", widget: "text", hint: "3-5 sentences about the equipment" }
-      - { label: "Known Issues", name: "issues", widget: "string", required: false, hint: "Any known defects — leave blank if none" }
-      - { label: "Attachments Included", name: "attachments", widget: "string", required: false, hint: "e.g. Quick coupler, 3 buckets" }
-      - { label: "Hero Image", name: "image", widget: "image", hint: "Main photo — minimum 1200px wide" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Known Issues", name: "issues", widget: "string", required: false, hint: "Leave blank if none" }
+      - { label: "Attachments Included", name: "attachments", widget: "string", required: false }
+      - { label: "Hero Image", name: "image", widget: "image" }
       - label: "Gallery Images"
         name: "gallery"
         widget: "list"
         required: false
         field: { label: "Image", name: "image", widget: "image" }
-      - { label: "Video URL", name: "video", widget: "string", required: false, hint: "YouTube or Vimeo link for walkaround video" }
-      - { label: "Shipping & Pickup Notes", name: "shipping", widget: "text", required: false, hint: "e.g. Buyer responsible for pickup. Can arrange freight via our logistics partners." }
+      - { label: "Video URL", name: "video", widget: "string", required: false, hint: "YouTube or Vimeo link" }
+      - { label: "Shipping & Pickup Notes", name: "shipping", widget: "text", required: false }
       - { label: "Date Listed", name: "date", widget: "date" }
