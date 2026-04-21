@@ -68,7 +68,7 @@
   <button class="nav__hamburger" id="nav-hamburger" onclick="this.classList.toggle('open');document.getElementById('mobile-nav').classList.toggle('open');" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-  <button class="nav__cta-btn" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request Appraisal</button>
+  <button class="nav__cta-btn" onclick="window.location.href='appraisal.html'">Request Appraisal</button>
 </nav>
 <div class="nav__mobile" id="mobile-nav">
     <a href="index.html" class='active'>Home</a>
@@ -77,7 +77,7 @@
     <a href="index.html#how-it-works">How It Works</a>
     <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
-    <a href="#" class="nav__mobile-cta" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden';document.getElementById('mobile-nav').classList.remove('open');document.querySelector('.nav__hamburger').classList.remove('open');return false;">Request Appraisal</a>
+    <a href="appraisal.html" class="nav__mobile-cta">Request Appraisal</a>
 </div>
 
 <!-- HERO -->
@@ -247,7 +247,7 @@
     <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(46px,6vw,78px);line-height:.9;text-transform:uppercase;letter-spacing:-1px;margin-bottom:22px;">Equipment to Sell?<br><span style="color:#E87722;display:block;">Let's Talk.</span></h2>
     <p style="font-size:17px;font-weight:300;color:#b0b0b0;line-height:1.75;margin-bottom:44px;">Whether you're buying one piece or moving an entire fleet — Heavy Line has the network, the process, and the expertise to get it done right.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn btn-primary btn-lg" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request an Appraisal →</button>
+      <button class="btn btn-primary btn-lg" onclick="window.location.href='appraisal.html'">Request an Appraisal →</button>
       <a href="buy.html" class="btn btn-ghost btn-lg">Browse Listings</a>
     </div>
   </div>
@@ -279,7 +279,7 @@
       <div style="background:rgba(232,119,34,.06);border:1px solid rgba(232,119,34,.2);padding:24px;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;color:#E87722;margin-bottom:8px;">Need a Valuation First?</div>
         <div style="font-size:13px;color:#b0b0b0;line-height:1.7;margin-bottom:14px;">Get a fair market valuation with no obligation.</div>
-        <button class="btn btn-primary" style="font-size:11px;padding:10px 22px;" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request Appraisal</button>
+        <button class="btn btn-primary" style="font-size:11px;padding:10px 22px;" onclick="window.location.href='appraisal.html'">Request Appraisal</button>
       </div>
     </div>
   </div>

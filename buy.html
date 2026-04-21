@@ -21,7 +21,7 @@
   <button class="nav__hamburger" id="nav-hamburger" onclick="this.classList.toggle('open');document.getElementById('mobile-nav').classList.toggle('open');" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-  <button class="nav__cta-btn" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request Appraisal</button>
+  <button class="nav__cta-btn" onclick="window.location.href='appraisal.html'">Request Appraisal</button>
 </nav>
 <div class="nav__mobile" id="mobile-nav">
     <a href="index.html" >Home</a>
@@ -30,7 +30,7 @@
     <a href="index.html#how-it-works">How It Works</a>
     <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
-    <a href="#" class="nav__mobile-cta" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden';document.getElementById('mobile-nav').classList.remove('open');document.querySelector('.nav__hamburger').classList.remove('open');return false;">Request Appraisal</a>
+    <a href="appraisal.html" class="nav__mobile-cta">Request Appraisal</a>
 </div>
 
 <!-- HERO -->
@@ -42,7 +42,7 @@
     <p style="font-size:17px;font-weight:300;color:#b0b0b0;line-height:1.75;max-width:520px;margin-bottom:40px;animation:fadeUp .8s .2s ease both;">Browse available inventory from trusted sellers. Every piece vetted by Heavy Line before it's listed.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .35s ease both;">
       <a href="#all-listings" class="btn btn-primary btn-lg">Browse All Listings →</a>
-      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request a Specific Unit</button>
+      <button class="btn btn-ghost btn-lg" onclick="window.location.href='appraisal.html'">Request a Specific Unit</button>
     </div>
   </div>
 </div>
@@ -97,7 +97,7 @@
   <div style="text-align:center;margin-top:48px;padding:40px;background:#181818;border:1px solid #272727;" class="reveal">
     <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:10px;">Can't Find What You Need?</p>
     <p style="font-size:14px;color:#999;margin-bottom:24px;">Heavy Line has access to inventory that isn't publicly listed. Tell us what you're looking for.</p>
-    <button class="btn btn-primary" onclick="document.getElementById('appraisal-modal').classList.add('open');document.body.style.overflow='hidden'">Request a Specific Unit →</button>
+    <button class="btn btn-primary" onclick="window.location.href='appraisal.html'">Request a Specific Unit →</button>
   </div>
 </div>
 
