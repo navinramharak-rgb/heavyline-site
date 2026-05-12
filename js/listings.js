@@ -189,8 +189,18 @@ function populateListingPage(listing) {
     if (imgs.length > 1) {
       gallery.innerHTML = imgs.map((img, i) => {
         const src = imgUrl(img);
-        return `<img src="${src}" alt="" style="width:100%;height:80px;object-fit:cover;cursor:pointer;border:2px solid ${i===0?'#E87722':'#272727'};transition:border-color .2s;" onclick="setHero('${src}', this)" class="gallery-thumb ${i===0?'active':''}">`;
+        return `<img src="${src}" data-full="${src}" alt="" style="width:100%;height:80px;object-fit:cover;cursor:pointer;border:2px solid ${i===0?'#E87722':'#272727'};transition:border-color .2s;" class="gallery-thumb ${i===0?'active':''}">`;
       }).join('');
+      // Use event delegation instead of inline onclick (safer with URLs)
+      gallery.addEventListener('click', function(e) {
+        const thumb = e.target.closest('.gallery-thumb');
+        if (!thumb) return;
+        const fullSrc = thumb.getAttribute('data-full');
+        document.getElementById('hero-img').src = fullSrc;
+        gallery.querySelectorAll('.gallery-thumb').forEach(t => { t.style.borderColor='#272727'; t.classList.remove('active'); });
+        thumb.style.borderColor = '#E87722';
+        thumb.classList.add('active');
+      });
     } else { gallery.style.display = 'none'; }
   }
 
