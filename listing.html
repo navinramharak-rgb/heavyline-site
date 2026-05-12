@@ -221,6 +221,16 @@ function setHero(src, el) {
   document.querySelectorAll('.gallery-thumb').forEach(t => { t.classList.remove('active'); t.style.borderColor='#272727'; });
   if(el) { el.classList.add('active'); el.style.borderColor='#E87722'; }
 }
+// Delegated click for dynamically built gallery
+document.addEventListener('click', function(e) {
+  const thumb = e.target.closest('#gallery .gallery-thumb');
+  if (!thumb) return;
+  const src = thumb.getAttribute('data-full') || thumb.src;
+  document.getElementById('hero-img').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => { t.classList.remove('active'); t.style.borderColor='#272727'; });
+  thumb.classList.add('active');
+  thumb.style.borderColor = '#E87722';
+});
 
 function openInquiry() {
   document.getElementById('inq-fname').focus();
