@@ -110,6 +110,8 @@ function renderBuyGrid(listings) {
   }
   if (noResults) noResults.style.display = 'none';
   grid.innerHTML = listings.map(l => renderCard(l)).join('');
+  // Trigger reveal on dynamically added cards
+  grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
 }
 
 function filterListings() {
@@ -146,6 +148,10 @@ async function initHomeFeatured() {
   const toShow = featured.length > 0 ? featured : listings.slice(0, 3);
   if (toShow.length > 0) {
     grid.innerHTML = toShow.map((l, i) => renderCard(l, `reveal rd${i+1}`)).join('');
+    // Trigger reveal animation on newly added cards
+    grid.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('in-view');
+    });
   }
 }
 
