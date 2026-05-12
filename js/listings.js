@@ -141,9 +141,11 @@ async function initHomeFeatured() {
   const grid = document.getElementById('featured-listings');
   if (!grid) return;
   const listings = await fetchAllListings();
+  // Show featured listings, or fall back to first 3 available
   const featured = listings.filter(l => l.featured === true || l.featured === 'true').slice(0, 3);
-  if (featured.length > 0) {
-    grid.innerHTML = featured.map((l, i) => renderCard(l, `reveal rd${i+1}`)).join('');
+  const toShow = featured.length > 0 ? featured : listings.slice(0, 3);
+  if (toShow.length > 0) {
+    grid.innerHTML = toShow.map((l, i) => renderCard(l, `reveal rd${i+1}`)).join('');
   }
 }
 
@@ -252,7 +254,18 @@ function populateListingPage(listing) {
 // ── AUTO INIT ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
-  if      (path.includes('buy'))     initBuyPage();
-  else if (path.includes('listing')) initListingPage();
-  else                               initHomeFeatured();
+  if      (path.includes('buy'))      initBuyPage();
+  else if (path.includes('listing'))  initListingPage();
+  else                                initHomeFeatured();
+});
+
+// Also run on window load as backup (handles cached pages)
+window.addEventListener('load', () => {
+  const path = window.location.pathname;
+  const grid = document.getElementById('featured-listings');
+  if (grid && !path.includes('buy') && !path.includes('listing')) {
+    if (grid.querySelector('.lst-card') === null) {
+      initHomeFeatured();
+    }
+  }
 });
