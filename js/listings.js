@@ -194,7 +194,7 @@ function populateListingPage(listing) {
     if (imgs.length > 1) {
       gallery.innerHTML = imgs.map((img, i) => {
         const src = imgUrl(img);
-        return `<img src="${src}" alt="" style="width:100%;height:80px;object-fit:cover;cursor:pointer;border:2px solid ${i===0?'#E87722':'#272727'};transition:border-color .2s;" onclick="setHero('${src}')" class="gallery-thumb ${i===0?'active':''}">`;
+        return `<img src="${src}" alt="" style="width:100%;height:80px;object-fit:cover;cursor:pointer;border:2px solid ${i===0?'#E87722':'#272727'};transition:border-color .2s;" onclick="setHero('${src}', this)" class="gallery-thumb ${i===0?'active':''}">`;
       }).join('');
     } else {
       gallery.style.display = 'none';
