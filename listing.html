@@ -246,7 +246,7 @@ function submitInquiry() {
   });
   if(!valid) return;
   const btn = document.getElementById('inq-btn');
-  btn.textContent = '✓ Inquiry Sent — We'll be in touch within 1 business day';
+  btn.textContent = "✓ Inquiry Sent — We'll be in touch within 1 business day";
   btn.style.background = '#2a6e2a';
   btn.style.clipPath = 'none';
   btn.style.padding = '14px 20px';
@@ -274,7 +274,7 @@ function submitInquiry() {
   formData.append('message', document.getElementById('inq-message')?.value || '');
   try {
     await fetch('/', { method: 'POST', body: formData });
-    btn.textContent = '✓ Inquiry Sent — We'll be in touch within 1 business day';
+    btn.textContent = "✓ Inquiry Sent — We'll be in touch within 1 business day";
     btn.style.background = '#2a6e2a';
     btn.style.clipPath = 'none';
     btn.style.padding = '14px 20px';
