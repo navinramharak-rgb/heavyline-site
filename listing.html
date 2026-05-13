@@ -146,12 +146,21 @@
       <!-- INQUIRY FORM -->
       <div style="background:#181818;border:1px solid #272727;padding:28px;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #272727;">Inquire About This Equipment</div>
-        <div class="form-row-2"><div><label class="form-label">First Name *</label><input type="text" class="form-input" id="inq-fname" placeholder="First"></div><div><label class="form-label">Last Name *</label><input type="text" class="form-input" id="inq-lname" placeholder="Last"></div></div>
-        <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" id="inq-email" placeholder="you@company.com"></div>
-        <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-input" id="inq-phone" placeholder=""></div>
-        <input type="hidden" id="inq-equipment" name="equipment"><div class="form-group"><label class="form-label">Message</label><textarea rows="4" class="form-input" id="inq-message" placeholder="Questions about this unit, availability, inspection requests..."></textarea></div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;" id="inq-btn" onclick="submitInquiry()">Send Inquiry →</button>
-        <p style="font-size:11px;color:#555;text-align:center;margin-top:12px;">Response within 1 business day</p>
+        <form name="listing-inquiry" method="POST" data-netlify="true" id="listing-inquiry-form" style="margin:0;">
+          <input type="hidden" name="form-name" value="listing-inquiry">
+          <input type="hidden" name="equipment" id="inq-equipment">
+          <div class="form-row-2"><div><label class="form-label">First Name *</label><input type="text" class="form-input" name="first-name" id="inq-fname" placeholder="First"></div><div><label class="form-label">Last Name *</label><input type="text" class="form-input" name="last-name" id="inq-lname" placeholder="Last"></div></div>
+          <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" name="email" id="inq-email" placeholder="you@company.com"></div>
+          <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-input" name="phone" id="inq-phone" placeholder="+1 (780) 000-0000"></div>
+          <div class="form-group"><label class="form-label">Message</label><textarea rows="4" class="form-input" name="message" id="inq-message" placeholder="Questions about this unit, availability, inspection requests..."></textarea></div>
+          <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;" id="inq-btn" onclick="submitInquiry()">Send Inquiry →</button>
+          <p style="font-size:11px;color:#555;text-align:center;margin-top:12px;">Response within 1 business day</p>
+        </form>
+        <div id="inq-success" style="display:none;text-align:center;padding:20px 0;">
+          <div style="font-size:32px;margin-bottom:10px;">✅</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;margin-bottom:6px;">Inquiry Sent</div>
+          <div style="font-size:13px;color:#b0b0b0;">We will be in touch within 1 business day.</div>
+        </div>
       </div>
 
       <!-- DIRECT CONTACT -->
@@ -264,23 +273,20 @@ function submitInquiry() {
   const btn = document.getElementById('inq-btn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  const formData = new FormData();
-  formData.append('form-name', 'listing-inquiry');
-  formData.append('equipment', document.getElementById('inq-equipment')?.value || '');
-  formData.append('first-name', document.getElementById('inq-fname').value);
-  formData.append('last-name', document.getElementById('inq-lname').value);
-  formData.append('email', document.getElementById('inq-email').value);
-  formData.append('phone', document.getElementById('inq-phone').value);
-  formData.append('message', document.getElementById('inq-message')?.value || '');
+  const form = document.getElementById('listing-inquiry-form');
+  const formData = new FormData(form);
   try {
-    await fetch('/', { method: 'POST', body: formData });
-    btn.textContent = "✓ Inquiry Sent — We'll be in touch within 1 business day";
-    btn.style.background = '#2a6e2a';
-    btn.style.clipPath = 'none';
-    btn.style.padding = '14px 20px';
+    const response = await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('inq-success').style.display = 'block';
+    } else {
+      throw new Error('Submission failed');
+    }
   } catch(e) {
     btn.textContent = 'Send Inquiry →';
     btn.disabled = false;
+    alert('Submission failed. Please email us directly at info@heavylinegroup.com');
   }
 }
 </script>
