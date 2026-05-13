@@ -269,7 +269,7 @@ function submitInquiry() {
   const form = document.getElementById('listing-inquiry-form');
   const formData = new FormData(form);
   try {
-    const response = await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
+    const response = await fetch('/listing.html', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
     if (response.ok) {
       form.style.display = 'none';
       document.getElementById('inq-success').style.display = 'block';
