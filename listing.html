@@ -15,16 +15,18 @@
 </script>
 </head>
 <body>
-<!-- Netlify Forms -->
+<!-- Netlify Forms detection (must match real form fields exactly) -->
 <form name="listing-inquiry" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="listing-inquiry">
   <input type="text" name="equipment">
   <input type="text" name="first-name">
   <input type="text" name="last-name">
   <input type="email" name="email">
   <input type="tel" name="phone">
   <textarea name="message"></textarea>
+  <input type="text" name="listing-url">
+  <input type="text" name="bot-field">
 </form>
-<!-- Netlify Forms detection -->
 
 
 <nav class="nav" id="main-nav">
@@ -239,26 +241,10 @@ function openInquiry() {
   document.querySelector('[style*="Inquire About"]').closest('div[style*="background:#181818;border:1px solid #272727;padding:28px"]').scrollIntoView({behavior:'smooth'});
 }
 
-function submitInquiry() {
+async function submitInquiry() {
   const req = [['inq-fname','First name'],['inq-lname','Last name'],['inq-email','Email'],['inq-phone','Phone']];
   let valid = true;
   req.forEach(([id]) => {
-    const el = document.getElementById(id);
-    if(!el.value.trim()) { el.style.borderColor='#CC3333'; valid=false; setTimeout(()=>el.style.borderColor='#272727',2500); }
-  });
-  if(!valid) return;
-  const btn = document.getElementById('inq-btn');
-  btn.textContent = "✓ Inquiry Sent — We'll be in touch within 1 business day";
-  btn.style.background = '#2a6e2a';
-  btn.style.clipPath = 'none';
-  btn.style.padding = '14px 20px';
-  btn.disabled = true;
-}
-</script>
-<script src="js/listings.js">async function submitInquiry() {
-  const req = ['inq-fname','inq-lname','inq-email','inq-phone'];
-  let valid = true;
-  req.forEach(id => {
     const el = document.getElementById(id);
     if(el && !el.value.trim()) { el.style.borderColor='#CC3333'; valid=false; setTimeout(()=>el.style.borderColor='#272727',2500); }
   });
@@ -266,25 +252,39 @@ function submitInquiry() {
   const btn = document.getElementById('inq-btn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  const formData = new FormData();
-  formData.append('form-name', 'listing-inquiry');
-  formData.append('equipment', document.getElementById('inq-equipment')?.value || '');
-  formData.append('first-name', document.getElementById('inq-fname').value);
-  formData.append('last-name', document.getElementById('inq-lname').value);
-  formData.append('email', document.getElementById('inq-email').value);
-  formData.append('phone', document.getElementById('inq-phone').value);
-  formData.append('message', document.getElementById('inq-message')?.value || '');
-  formData.append('listing-url', window.location.href);
+
+  const encode = (data) => Object.keys(data)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&');
+
+  const payload = {
+    'form-name': 'listing-inquiry',
+    'equipment': document.getElementById('inq-equipment')?.value || '',
+    'first-name': document.getElementById('inq-fname').value,
+    'last-name': document.getElementById('inq-lname').value,
+    'email': document.getElementById('inq-email').value,
+    'phone': document.getElementById('inq-phone').value,
+    'message': document.getElementById('inq-message')?.value || '',
+    'listing-url': window.location.href
+  };
+
   try {
-    await fetch('/', { method: 'POST', body: formData });
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode(payload)
+    });
+    if (!response.ok) throw new Error('Submission failed: ' + response.status);
     document.getElementById('listing-inquiry-form').style.display = 'none';
     document.getElementById('inq-success').style.display = 'block';
   } catch(e) {
+    console.error('Inquiry submission error:', e);
     btn.textContent = 'Send Inquiry →';
     btn.disabled = false;
     alert('Could not send. Please email info@heavylinegroup.com directly.');
   }
 }
 </script>
+<script src="js/listings.js"></script>
 </body>
 </html>
