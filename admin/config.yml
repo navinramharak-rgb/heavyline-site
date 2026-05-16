@@ -34,6 +34,8 @@ collections:
         name: "condition"
         widget: "select"
         options: ["Excellent — Like New","Good — Well Maintained","Fair — Minor Repairs Needed","Poor — Requires Significant Work"]
+      - { label: "Show Price on Listing?", name: "show_price", widget: "boolean", default: false, hint: "Toggle ON to display the price. OFF shows 'Contact for Pricing'." }
+      - { label: "Price (CAD)", name: "price", widget: "number", required: false, value_type: "int", hint: "Number only, no symbols. e.g. 85000. Only shown if toggle above is ON." }
       - { label: "Location", name: "location", widget: "string", hint: "e.g. Edmonton, Alberta" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Known Issues", name: "issues", widget: "string", required: false, hint: "Leave blank if none" }
