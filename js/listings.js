@@ -53,6 +53,18 @@ function imgUrl(path) {
   return `${RAW_BASE}/${path.replace(/^\//, '')}`;
 }
 
+// ── PRICE DISPLAY ─────────────────────────────────────────────
+// Returns formatted price string. Defaults to "Contact for Pricing"
+// for any listing where show_price is missing/false or price is empty.
+function priceDisplay(listing) {
+  const show = listing.show_price === true || listing.show_price === 'true';
+  const price = Number(listing.price);
+  if (show && price > 0) {
+    return `$${price.toLocaleString('en-CA')} CAD`;
+  }
+  return 'Contact for Pricing';
+}
+
 // ── RENDER CARD ───────────────────────────────────────────────
 function renderCard(listing, classes = '') {
   const status = listing.status || 'Available';
@@ -71,6 +83,7 @@ function renderCard(listing, classes = '') {
     <div class="lst-card__body">
       <p class="lst-card__cat">${listing.category||''}</p>
       <h3 class="lst-card__title">${listing.title||''}</h3>
+      <p class="lst-card__price" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:#E87722;letter-spacing:.5px;margin:6px 0 8px;">${priceDisplay(listing)}</p>
       <p class="lst-card__sub">${listing.year||''} · ${(listing.condition||'').split('—')[0].trim()} · ${(listing.location||'').split(',')[0].trim()}</p>
       <div class="lst-card__specs">${specs.map(s=>`<div><div class="lst-card__spec-l">${s.l}</div><div class="lst-card__spec-v">${s.v}</div></div>`).join('')}</div>
     </div>
@@ -220,6 +233,21 @@ function populateListingPage(listing) {
   if (rStatus) {
     rStatus.textContent = status;
     rStatus.closest('div')?.style.setProperty('background', badgeClass==='available'?'rgba(232,119,34,.1)':'rgba(100,100,100,.1)');
+  }
+
+  // Price block (right sidebar)
+  const priceEl = document.getElementById('listing-price');
+  const priceSubEl = document.getElementById('listing-price-sub');
+  if (priceEl) {
+    const show = listing.show_price === true || listing.show_price === 'true';
+    const price = Number(listing.price);
+    if (show && price > 0) {
+      priceEl.textContent = `$${price.toLocaleString('en-CA')} CAD`;
+      if (priceSubEl) priceSubEl.textContent = 'Price listed in Canadian dollars. Inquire below to discuss next steps.';
+    } else {
+      priceEl.textContent = 'Contact for Pricing';
+      if (priceSubEl) priceSubEl.textContent = 'No prices posted. Inquire directly for pricing discussion.';
+    }
   }
 
   const specsTable = document.getElementById('specs-table');
