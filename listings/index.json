@@ -1,5 +1,22 @@
 {
   "slugs": [
     "8000lb-telehandler"
-  ]
+  ],
+  "model": "TB260",
+  "featured": true,
+  "make": "TAKEUCHI",
+  "hours": "100",
+  "attachments": "Thumb/ Tooth and smooth bucket ",
+  "gallery": [
+    "/images/uploads/screenshot-2026-05-15-201304.png",
+    "/images/uploads/tb2602.jpeg"
+  ],
+  "status": "Available",
+  "location": "BC YRD",
+  "title": "Takeuchi TB260 Mini Excavator ( Thumb. Smooth and Tooth bucket Included )",
+  "condition": "Excellent — Like New",
+  "image": "/images/uploads/tb2601.jpeg",
+  "description": "TB260 Specs \nOPERATING PERFORMANCE\t\t\nOperating Weight - Canopy\t12,125 lb\t(5,500 kg)\nOperating Weight - Cab\t12,645 lb\t(5,735 kg)\nMaximum Bucket Breakout Force\t12,756 lb\t(5,786 kg)\nMaximum Arm Digging Force\t5,755 lb\t(2,610 kg)\nArm Length\t5 ft 10.1 in\t(1,780 mm)\nSlew Speed\t9.4 rpm\t\nTraction Force\t15,040 lb\t(6,822 kg)\nGround Pressure - Cab (Rubber)\t4.4 psi\t(30.2 kPa)\nGround Pressure - Cab (Steel)\t4.6 psi\t(31.5 kPa)\nTravel Speed - Low Range\t1.7 mph\t(2.8 km / hr)\nTravel Speed - High Range\t3.0 mph\t(4.9 km / hr)\nHYDRAULIC SYSTEM\t\t\nTotal Hydraulic Flow\t45.3 gpm\t(171.5 L / min)\nAuxiliary Flow - Primary Circuit\t27.0 gpm\t(102.2 L / min)\nAuxiliary Flow - Secondary Circuit\t11.6 gpm\t(43.9 L / min)\nHydraulic System Pressure\t3,480 psi\t(24.0 MPa)\nENGINE\t\t\nMake / Model\tYanmar / 4TNV86CT\t\nDisplacement\t127.6 cu in\t(2.1 L)\nHorsepower @ 2,400 rpm\t47.6 hp\t(35.5 kW)\nMaximum Torque @ 1,560 rpm\t130.5 ft-lb\t(177.0 Nm)\nFLUID CAPACITIES\t\t\nEngine Lubrication\t7.8 qt\t(7.4 L)\nCooling System\t11.6 qt\t(11.0 L)\nFuel Tank Capacity\t21.3 gal\t(81.0 L)\nFuel Consumption (65% of Full Load)\t1.6 gal / hr\t(6.3 L / hr)\nHydraulic Reservoir Capacity\t12.9 gal\t(49.0 L)\nHydraulic System Capacity\t23.8 gal\t(90.0 L)\n",
+  "year": 2022,
+  "category": "Excavators"
 }
