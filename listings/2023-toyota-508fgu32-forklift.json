@@ -1,0 +1,20 @@
+{
+  "model": "50 8FGU32",
+  "featured": true,
+  "make": "Toyota",
+  "hours": "600",
+  "gallery": [
+    "/images/uploads/toyota-2.jpg",
+    "/images/uploads/toyota-3.jpg",
+    "/images/uploads/t6.jpeg",
+    "/images/uploads/t8.jpeg"
+  ],
+  "status": "Available",
+  "location": "BC YRD",
+  "title": "2023 Toyota 508FGU32 Forklift",
+  "condition": "Excellent — Like New",
+  "image": "/images/uploads/toyota-1.jpg",
+  "description": "- Dual Front Tires\n-Free Lift 3-Stage Mask \n-Side Shift\n-Appx 600 Hour’s \n-Safety System: Features Toyota's System of Active Stability™ (SAS), which monitors load weight and lift height to improve stability and prevent tip-overs.",
+  "year": 2023,
+  "category": "Forklifts"
+}
